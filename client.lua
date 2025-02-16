@@ -12,22 +12,20 @@ local function PickupBag()
     if bagObj and not bagEquipped then
         local playerPed = PlayerPedId()
 
-        -- Caricare l'animazione "pickup_low"
         RequestAnimDict("pickup_object")
         while not HasAnimDictLoaded("pickup_object") do
             Wait(100)
         end
 
-        -- Eseguire l'animazione
-        TaskPlayAnim(playerPed, "pickup_object", "pickup_low", 8.0, -8.0, 1500, 49, 0, false, false, false)
-        Wait(1500) -- Attendere che l'animazione finisca
 
-        -- Eliminare l'oggetto e restituire l'item
+        TaskPlayAnim(playerPed, "pickup_object", "pickup_low", 8.0, -8.0, 1500, 49, 0, false, false, false)
+        Wait(1500)
+
+
         DeleteObject(bagObj)
         bagObj = nil
         TriggerServerEvent('outfitbag:giveBagItem')
 
-        -- Notifica di conferma
         lib.notify({
             title = "Outfit Bag",
             description = "You picked up your outfit bag!",
@@ -51,7 +49,6 @@ local function PutOnBag()
 
     local x, y, z = table.unpack(GetEntityCoords(playerPed))
 
-    -- Ensure model is requested and loaded
     RequestModel(bagModel)
     while not HasModelLoaded(bagModel) do Wait(100) end
 
@@ -64,28 +61,26 @@ local function PutOnBag()
         return
     end
 
-    -- Create and attach the bag
+
     bagObj = CreateObjectNoOffset(bagModel, x, y, z, true, true, false)
     AttachEntityToEntity(bagObj, playerPed, GetPedBoneIndex(playerPed, 24818), 
-        0.15, -0.10, -0.05,  -- Position adjustment
-        0.0, 90.0, 180.0,    -- Rotation
+        0.15, -0.10, -0.05, 
+        0.0, 90.0, 180.0,    
         true, true, false, true, 1, true)
 
     bagEquipped = true
 
     lib.showTextUI("Press [E] to place the bag")
--- When placing the bag, remove 1 from inventory
 
-    -- Handling bag placement
     CreateThread(function()
         while bagEquipped do
             Wait(0)
             if IsControlJustReleased(0, 38) then
                 ClearPedTasks(playerPed)
-                ResetPedMovementClipset(playerPed, 0) -- Reset walk style
+                ResetPedMovementClipset(playerPed, 0) 
                 DetachEntity(bagObj, true, true)
 
-                -- Adjust bag placement on the ground
+
                 local bagCoords = GetEntityCoords(bagObj)
                 SetEntityCoords(bagObj, bagCoords.x, bagCoords.y, bagCoords.z - 0.98, false, false, false, true)
                 Wait(500)
@@ -96,15 +91,15 @@ local function PutOnBag()
                     Wait(100)
                 end
         
-                -- Eseguire l'animazione
+   
                 TaskPlayAnim(playerPed, "pickup_object", "pickup_low", 8.0, -8.0, 1500, 49, 0, false, false, false)
-                Wait(1500) -- Attendere che l'animazione finisca
+                Wait(1500)
         
                 FreezeEntityPosition(bagObj, true)
 
                 lib.hideTextUI()
 
-                -- Add interaction zone
+    
                 exports.ox_target:addSphereZone({
                     coords = GetEntityCoords(bagObj),
                     radius = 1.0,
@@ -127,7 +122,7 @@ local function PutOnBag()
                 })
                 
 
-                bagEquipped = false -- Mark bag as placed
+                bagEquipped = false 
                 break
             end
         end
@@ -279,14 +274,14 @@ RegisterNetEvent('outfitbag:wearOutfit')
 AddEventHandler('outfitbag:wearOutfit', function(outfitId)
     local playerPed = PlayerPedId()
 
-    -- Play outfit change animation
+
     RequestAnimDict("clothingshirt")
     while not HasAnimDictLoaded("clothingshirt") do
         Wait(100)
     end
 
     TaskPlayAnim(playerPed, "clothingshirt", "try_shirt_positive_a", 8.0, -8.0, 5000, 49, 0, false, false, false)
-    Wait(5000) -- Wait for animation to finish
+    Wait(5000) 
 
     TriggerServerEvent('outfitbag:applyOutfit', outfitId)
 end)
@@ -296,7 +291,7 @@ AddEventHandler('outfitbag:requestClothingData', function(outfitName, identifier
     local playerPed = PlayerPedId()
     local components = {}
 
-    -- Save all clothing components
+
     for i = 1, 11 do
         local drawable = GetPedDrawableVariation(playerPed, i)
         local texture = GetPedTextureVariation(playerPed, i)
@@ -305,7 +300,7 @@ AddEventHandler('outfitbag:requestClothingData', function(outfitName, identifier
         components[i] = {drawable = drawable, texture = texture, palette = palette}
     end
 
-    -- Send back to server
+
     TriggerServerEvent('outfitbag:storeOutfit', outfitName, identifier, components)
 end)
 
