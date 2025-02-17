@@ -1,7 +1,7 @@
-# **Armony Outfit Bag**
+# **Kuro Outfit Bag**
 
 ## **Overview**
-Armony Outfit Bag is a free, fully functional outfit storage system for **FiveM (ESX)**. This resource allows players to equip, drop, and pick up a **wearable outfit bag**, seamlessly managing outfits through an intuitive **ox_lib** menu. Featuring **inventory integration, smooth animations, and multi-language support**, it provides an immersive and optimized experience for any server.
+Kuro Outfit Bag is a free, fully functional outfit storage system for **FiveM (ESX)**. This resource allows players to equip, drop, and pick up a **wearable outfit bag**, seamlessly managing outfits through an intuitive **ox_lib** menu. Featuring **inventory integration, smooth animations, and multi-language support**, it provides an immersive and optimized experience for any server.
 
 ## **Features**
 - **Wearable Outfit Bag** – Equip the bag on your back with realistic animations.
@@ -16,7 +16,7 @@ Armony Outfit Bag is a free, fully functional outfit storage system for **FiveM 
 
 ## **Installation**
 1. **Download & Extract**
-   - Download the latest version of Armony Outfit Bag.
+   - Download the latest version of Kuro Outfit Bag.
    - Extract the folder and place it into your `resources` directory.
 
 2. **Database Setup**
@@ -26,7 +26,7 @@ Armony Outfit Bag is a free, fully functional outfit storage system for **FiveM 
    - Edit `config.lua` to customize settings such as item names and languages.
 
 4. **Start the Resource**
-   - Add `ensure armony_outfitbag` to your `server.cfg`.
+   - Add `ensure Kuro_outfitbag` to your `server.cfg`.
 
 5. **Restart Your Server**
    - Start your FiveM server and enjoy the resource.
@@ -44,7 +44,7 @@ Armony Outfit Bag is a free, fully functional outfit storage system for **FiveM 
 - [oxmysql](https://github.com/overextended/oxmysql)
 
 ## **Support & Contributions**
-- If you need help or want to report an issue, join the **Armony Community Discord**.
+- If you need help or want to report an issue, join the **Kuro Community Discord**.
 - This resource is **100% free**. If you see someone selling it, they are a scammer.
 - Source code is **publicly available** to prevent unauthorized reselling.
 - Discord: https://discord.gg/v2BBSKe9
@@ -53,5 +53,5 @@ Armony Outfit Bag is a free, fully functional outfit storage system for **FiveM 
 This resource is released for **personal and community use**. Modifications are allowed, but **redistribution or resale** is strictly prohibited.
 
 ---
-**Developed by Armony. Enjoy and enhance your FiveM server today!**
+**Developed by Kuro. Enjoy and enhance your FiveM server today!**
 
